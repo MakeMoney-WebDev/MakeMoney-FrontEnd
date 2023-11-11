@@ -1,0 +1,9 @@
+.myRow{
+    display: flex;
+    flex-direction: row;
+    padding-right: 35px;
+}
+
+.col{
+    flex: 1 0;
+}
