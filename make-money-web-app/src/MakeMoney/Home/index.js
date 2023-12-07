@@ -1,9 +1,9 @@
 import "./index.css";
 function Home() {
   return (
-    <div className="col">
-      <div className="myRow">
-        <div className="Content">
+    <div className="content">
+      <div className="container-fluid">
+        <div>
           <h1>Hello World</h1>
         </div>
       </div>
