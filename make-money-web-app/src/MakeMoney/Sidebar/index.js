@@ -39,7 +39,7 @@ function Sidebar() {
   return (
     <div id="sidebar">
       <div className="list-group">
-        <img src={PNG} className="list-group-item"></img>
+        <img src={PNG} alt="logo" className="list-group-item" style={{textAlign: "center"}}></img>
         {links.map((link, index) => (
           <Link
             key={index}

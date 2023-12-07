@@ -7,3 +7,9 @@
 .col{
     flex: 1 0;
 }
+
+.content {
+    background-color: #F5F7F9;
+    padding: 10px;
+    display: flex;
+}
