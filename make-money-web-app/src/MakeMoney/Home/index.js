@@ -4,7 +4,7 @@ function Home() {
     <div className="content">
       <div className="container-fluid">
         <div>
-          <h1>Hello World</h1>
+          <h4>My Portfolio</h4>
         </div>
       </div>
     </div>
