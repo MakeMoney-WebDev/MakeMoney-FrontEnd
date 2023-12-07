@@ -21,7 +21,7 @@
 
 #sidebar {
     background-color: white;
-    width: 150px;
+    width: 200px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
