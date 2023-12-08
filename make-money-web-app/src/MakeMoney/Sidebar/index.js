@@ -13,25 +13,12 @@ import {
 } from "react-icons/fa";
 
 function Sidebar() {
-  const links = [
-    "Home",
-    "Account",
-    "Dashboard",
-    "News",
-    "Calendar",
-    "Inbox",
-    "Watchlist",
-    "Help",
-  ];
+  const links = ["Home", "Account", "Watchlist", "Help"];
   const { pathname } = useLocation();
 
   const linksToIconsMap = {
     Home: <FaHome className="text-muted" />,
     Account: <FaUser className="text-muted" />,
-    Dashboard: <FaTachometerAlt className="text-muted" />,
-    News: <FaBook className="text-muted" />,
-    Calendar: <FaCalendar className="text-muted" />,
-    Inbox: <FaInbox className="text-muted" />,
     Watchlist: <FaClock className="text-muted" />,
     Help: <FaQuestionCircle className="text-muted" />,
   };
@@ -39,7 +26,12 @@ function Sidebar() {
   return (
     <div id="sidebar">
       <div className="list-group">
-        <img src={PNG} alt="logo" className="list-group-item" style={{padding: "40px 37px "}}></img>
+        <img
+          src={PNG}
+          alt="logo"
+          className="list-group-item"
+          style={{ padding: "40px 37px " }}
+        ></img>
         {links.map((link, index) => (
           <Link
             key={index}
