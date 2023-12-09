@@ -1,10 +1,15 @@
 import "./index.css";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import * as client from "./client";
+import { useSelector } from "react-redux";
+
 function Home() {
 	const location = useLocation();
-	const errorMessage = location.state?.errorMessage;
-	const searchData = location.state?.searchData || null;
+	const account = useSelector((state) => state.accountReducer.account);
+	const [successMessage, setSuccessMessage] = useState("");
+	const [errorMessage, setErrorMessage] = useState(location.state?.errorMessage);
+	const searchData = location.state?.searchData;
 	let OpenPrice = "";
 	let ClosePrice = "";
 	let HighPrice = "";
@@ -49,6 +54,24 @@ function Home() {
 		Percent = "The Percentage change was 0";
 	}
 
+	const addToPublicWatchlist = async (ticker) => {
+		try {
+			await client.addToWatchlist(account.publicWatchlist, ticker);
+			setSuccessMessage(`Successfully added ${ticker} to the public watchlist!`);
+		} catch (error) {
+			setErrorMessage(error.response.data.message);
+		}
+	};
+
+	const addToPrivateWatchlist = async (ticker) => {
+		try {
+			await client.addToWatchlist(account.privateWatchlist, ticker);
+			setSuccessMessage(`Successfully added ${ticker} to the private watchlist!`);
+		} catch (error) {
+			setErrorMessage(error.response.data.message);
+		}
+	};
+
 	return (
 		<div className="content">
 			<div className="container-fluid">
@@ -65,6 +88,25 @@ function Home() {
 					{Percent}
 					<br />
 				</div>
+				{account && searchData && (
+					<div className="d-flex flex-column">
+						<button
+							className="btn btn-success my-2"
+							onClick={() => addToPublicWatchlist(searchData.ticker)}
+						>
+							Add to Public Watchlist
+						</button>
+						<button
+							className="btn btn-success"
+							onClick={() => addToPrivateWatchlist(searchData.ticker)}
+						>
+							Add to Private Watchlist
+						</button>
+						{successMessage && (
+							<div className="text-success text-center mt-2">{successMessage}</div>
+						)}
+					</div>
+				)}
 			</div>
 		</div>
 	);

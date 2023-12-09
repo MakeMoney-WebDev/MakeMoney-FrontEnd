@@ -1,60 +1,68 @@
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .topbar-left h2 {
-    margin: 0;
-    color: #000;
-  }
-  
-  .topbar-center {
-    display: flex;
-    align-items: center;
-  }
-  
-  .topbar-center input {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-icon {
-    cursor: pointer;
-  }
-  
-  .topbar-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
-    font-size: 20px;
-    margin-left: 20px;
-    cursor: pointer;
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-  }
-  
-  .name {
-    margin-right: 10px;
-  }
-  
-  .profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  /* Add additional styles for the dropdown and other elements as needed */
-  
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-left h2 {
+	margin: 0;
+	color: #000;
+}
+
+.topbar-center {
+	display: flex;
+	align-items: center;
+}
+
+.topbar-center input {
+	padding: 5px 10px;
+	margin-right: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.search-icon {
+	cursor: pointer;
+}
+
+.topbar-right {
+	display: flex;
+	align-items: center;
+}
+
+.icon {
+	font-size: 25px;
+	margin-left: 20px;
+	cursor: cursor;
+}
+
+.profile {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+}
+
+.name {
+	margin-right: 10px;
+	font-size: 20px;
+}
+
+.profile-picture {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.profile-link {
+	color: inherit;
+	text-decoration: none;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+/* Add additional styles for the dropdown and other elements as needed */

@@ -4,10 +4,12 @@ import "./index.css";
 import { stockSearch } from "./client";
 import { useState } from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Topbar() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const account = useSelector((state) => state.accountReducer.account);
 	const navigate = useNavigate();
 	const handleSearch = async () => {
 		try {
@@ -36,15 +38,20 @@ function Topbar() {
 					<FaSearch className="search-icon" />
 				</button>
 			</div>
-			<div className="topbar-right">
-				<FaBell className="icon" />
-				<FaUserCircle className="icon" />
-				<div className="profile">
-					<span className="name">Profile Name</span>
-					<img src="/path-to-your-profile-picture.jpg" alt="profile" className="profile-picture" />
-					<div className="dropdown">{/* Dropdown items */}</div>
+			{account && (
+				<div className="topbar-right">
+					<Link to="/MakeMoney/Account" className="profile-link">
+						<FaUserCircle className="icon" />
+						<div className="profile">
+							<span className="name">
+								{account.firstName} {account.lastName}
+							</span>
+							{/* <img src="/path-to-your-profile-picture.jpg" alt="profile" className="profile-picture" /> */}
+							<div className="dropdown">{/* Dropdown items */}</div>
+						</div>
+					</Link>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }
