@@ -38,6 +38,7 @@ function Account() {
     try {
       const searchData = await client.findUserByUsername(searchTerm);
       console.log("Search Data:", searchData);
+      setSearchedUser(searchData);
     } catch (error) {
       console.log("Error occurred:", error);
       setErrorMessage(error.response.data.message);
