@@ -31,7 +31,7 @@ function Signin() {
     <div className="content">
       <div className="container-fluid">
         <h4>Sign in</h4>
-        <label for="username">Username</label>
+        <label htmlFor="username">Username</label>
         <input
           id="username"
           className="form-control"
@@ -41,7 +41,7 @@ function Signin() {
           }
         />
         <br />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           className="form-control"

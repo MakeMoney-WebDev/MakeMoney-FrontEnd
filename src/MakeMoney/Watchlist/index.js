@@ -13,23 +13,33 @@ function Watchlist() {
   const fetchWatchlists = async () => {
     try {
       if (account) {
-        setPublicWatchlist(
-          await client.findWatchlistById(account.publicWatchlist)
+        const publicWL = await client.findWatchlistById(
+          account.publicWatchlist
         );
-        setPrivateWatchlist(
-          await client.findWatchlistById(account.privateWatchlist)
+        const privateWL = await client.findWatchlistById(
+          account.privateWatchlist
         );
+        console.log("public", publicWL);
+        console.log("private", privateWL);
+
+        setPublicWatchlist(publicWL);
+        setPrivateWatchlist(privateWL);
       } else {
         throw new Error("No Account found. Please either sign in or sign up.");
       }
     } catch (error) {
-      setErrorMessage(error.Message);
+      setErrorMessage(error.message);
     }
   };
 
   useEffect(() => {
     fetchWatchlists();
   }, [account]);
+
+  const deleteFromWatchlist = async (id, item) => {
+    await client.deleteFromWatchlist(id, item);
+    fetchWatchlists();
+  };
 
   return (
     <div className="content">
@@ -46,13 +56,21 @@ function Watchlist() {
           {publicWatchlist && (
             <div className="col-6">
               <h2>Public Watchlist</h2>
-              <DisplayWatchlist watchlist={publicWatchlist} canEdit={true} />
+              <DisplayWatchlist
+                watchlist={publicWatchlist}
+                canEdit
+                onDelete={deleteFromWatchlist}
+              />
             </div>
           )}
           {privateWatchlist && (
             <div className="col-6">
               <h2>Private Watchlist</h2>
-              <DisplayWatchlist watchlist={privateWatchlist} canEdit={true} />
+              <DisplayWatchlist
+                watchlist={privateWatchlist}
+                canEdit
+                onDelete={deleteFromWatchlist}
+              />
             </div>
           )}
         </div>

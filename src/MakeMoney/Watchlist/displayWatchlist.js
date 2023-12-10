@@ -3,22 +3,18 @@ import { Link } from "react-router-dom";
 import * as client from "./client";
 import { useState } from "react";
 
-const DisplayWatchlist = ({ watchlist }, canEdit) => {
-  const [list, setList] = useState(watchlist.listOfTickers);
-  const deleteFromWatchlist = async (item) => {
-    await client.deleteFromWatchlist(watchlist._id, item);
-    setList(list.filter((i) => i !== item));
-  };
+const DisplayWatchlist = ({ watchlist, canEdit = false, onDelete }) => {
+  // const [list, setList] = useState(watchlist.listOfTickers);
 
   return (
     <div className="list-group pt-2">
-      {list.map((item, index) => (
+      {watchlist.listOfTickers.map((item, index) => (
         <div>
           <div className="list-group-item d-flex justify-content-between align-items-center list-stock">
             {item}
             {canEdit && (
               <div className="mb-">
-                <FaTrash onClick={() => deleteFromWatchlist(item)} />
+                <FaTrash onClick={() => onDelete(watchlist._id, item)} />
               </div>
             )}
           </div>

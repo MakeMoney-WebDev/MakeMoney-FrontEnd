@@ -6,6 +6,7 @@ import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import DisplayWatchlist from "../Watchlist/displayWatchlist";
+import { findWatchlistById } from "../Watchlist/client";
 function Account() {
   const account = useSelector((state) => state.accountReducer.account);
   const navigate = useNavigate();
@@ -35,49 +36,10 @@ function Account() {
     fetchAccount();
   }, []);
 
-  const handleSearch = async () => {
-    try {
-      const searchData = await client.findUserByUsername(searchTerm);
-      console.log("Search Data:", searchData);
-      setSearchedUser(searchData);
-    } catch (error) {
-      console.log("Error occurred:", error);
-      setErrorMessage(error.response.data.message);
-      setSearchedUser(null);
-    }
-  };
-  const [publicWatchlist, setPublicWatchlist] = useState(null);
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <div className="content">
       <div className="container-fluid">
         <h4>My Account</h4>
-        <input
-          type="text"
-          placeholder="Search for a User"
-          value={searchTerm}
-          onChange={handleChange}
-        />
-        <button className="btn btn-light" onClick={handleSearch}>
-          <FaSearch className="search-icon" />
-        </button>
-        {searchedUser && (
-          <div>
-            <h4>Here are results for {searchedUser.username}</h4>
-            <br />
-            <p>Name: {searchedUser.firstName}</p>
-            <p>Username: {searchedUser.username}</p>
-            {publicWatchlist && (
-              <div className="col-6">
-                <h2>Public Watchlist</h2>
-                <DisplayWatchlist watchlist={publicWatchlist} canEdit={false} />
-              </div>
-            )}
-          </div>
-        )}
         {!account && (
           <div>
             <Link to="/makemoney/signin" className="btn btn-primary">
@@ -91,7 +53,7 @@ function Account() {
         {account && (
           <div>
             <br />
-            <label for="username">Current Username</label>
+            <label htmlFor="username">Current Username</label>
             <input
               id="username"
               className="form-control"
@@ -101,7 +63,7 @@ function Account() {
               }
             />
             <br />
-            <label for="password">Current Password</label>
+            <label htmlFor="password">Current Password</label>
             <input
               id="password"
               className="form-control"
@@ -111,7 +73,7 @@ function Account() {
               }
             />
             <br />
-            <label for="fname">Your First Name</label>
+            <label htmlFor="fname">Your First Name</label>
             <input
               id="fname"
               className="form-control"
@@ -122,7 +84,7 @@ function Account() {
               }
             />
             <br />
-            <label for="lname">Your Last Name</label>
+            <label htmlFor="lname">Your Last Name</label>
             <input
               id="lname"
               className="form-control"
@@ -133,7 +95,7 @@ function Account() {
               }
             />
             <br />
-            <label for="email">Your Email</label>
+            <label htmlFor="email">Your Email</label>
             <input
               id="email"
               type="email"
@@ -144,7 +106,7 @@ function Account() {
               }
             />
             <br />
-            <label for="phone">Your Phone Number</label>
+            <label htmlFor="phone">Your Phone Number</label>
             <input
               id="phone"
               className="form-control"

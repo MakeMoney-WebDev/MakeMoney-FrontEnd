@@ -10,10 +10,11 @@ import {
   FaClock,
   FaQuestionCircle,
   FaHome,
+  FaSearch,
 } from "react-icons/fa";
 
 function Sidebar() {
-  const links = ["Home", "Account", "Watchlist", "Help"];
+  const links = ["Home", "Account", "Watchlist", "Help", "Search"];
   const { pathname } = useLocation();
 
   const linksToIconsMap = {
@@ -21,6 +22,7 @@ function Sidebar() {
     Account: <FaUser className="text-muted" />,
     Watchlist: <FaClock className="text-muted" />,
     Help: <FaQuestionCircle className="text-muted" />,
+    Search: <FaSearch className="text-muted" />,
   };
 
   return (
