@@ -5,6 +5,7 @@ import { setAccount, updateAccount } from "./accountReducer";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import DisplayWatchlist from "../Watchlist/displayWatchlist";
 function Account() {
   const account = useSelector((state) => state.accountReducer.account);
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ function Account() {
       setSearchedUser(null);
     }
   };
+  const [publicWatchlist, setPublicWatchlist] = useState(null);
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -68,7 +70,12 @@ function Account() {
             <br />
             <p>Name: {searchedUser.firstName}</p>
             <p>Username: {searchedUser.username}</p>
-            <p>Public watchlist: none</p>
+            {publicWatchlist && (
+              <div className="col-6">
+                <h2>Public Watchlist</h2>
+                <DisplayWatchlist watchlist={publicWatchlist} canEdit={false} />
+              </div>
+            )}
           </div>
         )}
         {!account && (
