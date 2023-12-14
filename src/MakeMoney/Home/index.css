@@ -13,3 +13,8 @@
     padding: 10px;
     display: flex;
 }
+
+.chart-container {
+    width: 700px;
+    height: 300px;
+  }
