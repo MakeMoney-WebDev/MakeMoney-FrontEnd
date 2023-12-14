@@ -15,8 +15,9 @@
 }
 
 .btn-custom {
-    background-color: rgb(84, 136, 86) !important;
+    background-color: rgb(63, 148, 73) !important;
     color: white !important;
+    max-height: 38px;
 }
 
 .btn-custom:hover {
