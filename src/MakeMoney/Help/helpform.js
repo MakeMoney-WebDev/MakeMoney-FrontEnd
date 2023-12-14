@@ -1,6 +1,6 @@
 function HelpForm() {
   return (
-    <div className="content">
+    <>
       <div className="container-fluid">
         <div>
           <h4>Contact Us</h4>
@@ -13,7 +13,7 @@ function HelpForm() {
               type="email"
               class="form-control"
               id="email"
-              placeholder="Enter email"
+              placeholder="Enter Email"
             />
           </div>
           <br />
@@ -33,7 +33,7 @@ function HelpForm() {
               type="text"
               class="form-control"
               id="name"
-              placeholder="Enter Phone Number"
+              placeholder="Enter Full Name"
             />
           </div>
           <br />
@@ -43,16 +43,16 @@ function HelpForm() {
               type="text"
               class="form-control"
               id="message"
-              placeholder="Enter your message"
+              placeholder="Enter Message"
             ></textarea>
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-custom-filled">
             Submit
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 export default HelpForm;

@@ -36,22 +36,66 @@ function Home() {
 			color: PercentChange > 0 ? "green" : PercentChange < 0 ? "red" : "black",
 		};
 		Ticker = (
-			<span style={tickerStyle}>The current stock you are viewing is {searchData.ticker}</span>
+			<span style={tickerStyle}><strong>The current stock you are viewing is {searchData.ticker}</strong></span>
 		);
 		// Ticker = `The current stock you are viewing is ${searchData.ticker}`;
-		OpenPrice = `The open price of the stock was ${searchData.open}`;
-		ClosePrice = `The close price of the stock was ${searchData.close}`;
-		HighPrice = `The highest recorded price of the stock was ${searchData.high}`;
-		LowPrice = `The lowest recorded price of the stock was ${searchData.low}`;
-		Percent = `The percent change today is measured at ${PercentChange}`;
+		OpenPrice = (
+			<span>
+				The <strong>open price</strong> of the stock was <strong>${searchData.open.toFixed(2)}</strong>
+			</span>
+		  );
+		ClosePrice = (
+			<span>
+				The <strong>close price</strong> of the stock was <strong>${searchData.close.toFixed(2)}</strong>
+			</span>
+		  );
+		HighPrice = (
+			<span>
+				The <strong>highest recorded price</strong> of the stock was <strong>${searchData.high.toFixed(2)}</strong>
+			</span>
+		  );
+		LowPrice = (
+			<span>
+				The <strong>lowest recorded price</strong> of the stock was <strong>${searchData.low.toFixed(2)}</strong>
+			</span>
+		  );
+		Percent = (
+			<span>
+				The <strong>percent change</strong> is measured at <strong>%{PercentChange.toFixed(2)}</strong>
+			</span>
+		  );
 	} else {
 		console.log("Search Data not found in Home");
-		Ticker = `The current stock you are viewing is none`;
-		OpenPrice = "The open price of the stock was 0";
-		ClosePrice = "The close price of the stock was 0";
-		HighPrice = "The highest recorded price of the stock was 0";
-		LowPrice = "The lowest recorded price of the stock was 0";
-		Percent = "The Percentage change was 0";
+		Ticker = (
+			<span>
+				<strong>The current stock you are viewing is none</strong>
+			</span>
+		  );
+		OpenPrice = (
+			<span>
+				The <strong>open price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		ClosePrice = (
+			<span>
+				The <strong>close price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		HighPrice = (
+			<span>
+				The <strong>highest recorded price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		LowPrice = (
+			<span>
+				The <strong>lowest recorded price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		Percent = (
+			<span>
+				The <strong>percentage change</strong> is measured at <strong>0</strong>
+			</span>
+		  );
 	}
 
 	const addToPublicWatchlist = async (ticker) => {
@@ -79,34 +123,36 @@ function Home() {
 					<h4>Home</h4>
 				</div>
 				{errorMessage && <div className="text-danger">{errorMessage}</div>}
-				<div>
-					{Ticker} <br />
-					{OpenPrice} <br />
-					{ClosePrice} <br />
-					{HighPrice} <br />
-					{LowPrice} <br />
-					{Percent}
-					<br />
-				</div>
-				{account && searchData && (
-					<div className="d-flex flex-column">
-						<button
-							className="btn btn-success my-2"
-							onClick={() => addToPublicWatchlist(searchData.ticker)}
-						>
-							Add to Public Watchlist
-						</button>
-						<button
-							className="btn btn-success"
-							onClick={() => addToPrivateWatchlist(searchData.ticker)}
-						>
-							Add to Private Watchlist
-						</button>
-						{successMessage && (
-							<div className="text-success text-center mt-2">{successMessage}</div>
-						)}
+				<div className="infocard">
+					<div>
+						{Ticker} <br /><br />
+						{OpenPrice} <br />
+						{ClosePrice} <br />
+						{HighPrice} <br />
+						{LowPrice} <br />
+						{Percent}
+						<br />
 					</div>
-				)}
+					{account && searchData && (
+						<div className="d-flex flex-column">
+							<button
+								className="btn btn-success my-2"
+								onClick={() => addToPublicWatchlist(searchData.ticker)}
+							>
+								Add to Public Watchlist
+							</button>
+							<button
+								className="btn btn-success"
+								onClick={() => addToPrivateWatchlist(searchData.ticker)}
+							>
+								Add to Private Watchlist
+							</button>
+							{successMessage && (
+								<div className="text-success text-center mt-2">{successMessage}</div>
+							)}
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);
