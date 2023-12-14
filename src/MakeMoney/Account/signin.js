@@ -1,6 +1,7 @@
 import * as client from "./client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./index.css";
 function Signin() {
   const [credentials, setCredentials] = useState({
@@ -30,33 +31,40 @@ function Signin() {
   return (
     <div className="content">
       <div className="container-fluid">
-        <h4>Sign in</h4>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          className="form-control"
-          value={credentials.username}
-          onChange={(e) =>
-            setCredentials({ ...credentials, username: e.target.value })
-          }
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          className="form-control"
-          value={credentials.password}
-          onChange={(e) =>
-            setCredentials({ ...credentials, password: e.target.value })
-          }
-        />
-        <br />
-        <button className="btn btn-primary" onClick={signin}>
-          Signin
-        </button>
-        <br />
-        <br />
-        {errorMessage && <h4>{errorMessage}</h4>}
+        <div className="infocard">
+          <h4>Welcome Back</h4>
+          <br/>
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            className="form-control"
+            value={credentials.username}
+            onChange={(e) =>
+              setCredentials({ ...credentials, username: e.target.value })
+            }
+          />
+          <br />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="form-control"
+            value={credentials.password}
+            onChange={(e) =>
+              setCredentials({ ...credentials, password: e.target.value })
+            }
+          />
+          <br />
+          <div className="sign-up-prompt">
+            Don't have an account? <Link to="/makemoney/signup" className="colored-link">Sign up here</Link>
+          </div>
+          <br />
+          <button className="btn btn-custom-filled" onClick={signin}>
+            Sign In
+          </button>
+          <br />
+          <br />
+          {errorMessage && <h4>{errorMessage}</h4>}
+        </div>
       </div>
     </div>
   );

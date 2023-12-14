@@ -34,12 +34,12 @@ function Topbar() {
 					value={searchTerm}
 					onChange={handleChange}
 				/>
-				<button className="btn btn-light" onClick={handleSearch}>
+				<button className="btn btn-light ms-2" onClick={handleSearch}>
 					<FaSearch className="search-icon" />
 				</button>
 			</div>
-			{account && (
 				<div className="topbar-right">
+				{account ? (
 					<Link to="/MakeMoney/Account" className="profile-link">
 						<FaUserCircle className="icon" />
 						<div className="profile">
@@ -50,8 +50,17 @@ function Topbar() {
 							<div className="dropdown">{/* Dropdown items */}</div>
 						</div>
 					</Link>
+				):(
+					<>
+					<Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
+						Sign In
+					</Link>
+					<Link to="/makemoney/signup" className="btn btn-custom-outline">
+						Sign Up
+					</Link>
+					</>
+				)}	
 				</div>
-			)}
 		</div>
 	);
 }

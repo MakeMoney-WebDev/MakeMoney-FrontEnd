@@ -42,10 +42,10 @@ function Account() {
         <h4>My Account</h4>
         {!account && (
           <div>
-            <Link to="/makemoney/signin" className="btn btn-primary">
+            <Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
               Sign In
             </Link>
-            <Link to="/makemoney/signup" className="btn btn-success">
+            <Link to="/makemoney/signup" className="btn btn-custom-outline">
               Sign Up
             </Link>
           </div>

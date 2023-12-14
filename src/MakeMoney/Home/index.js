@@ -48,48 +48,90 @@ function Home() {
     return 0;
   };
 
-  if (searchData) {
-    console.log("Search Data in Home:", searchData);
-    PercentChange = calculatePercentageChange();
-    const tickerStyle = {
-      color: PercentChange > 0 ? "green" : PercentChange < 0 ? "red" : "black",
-    };
-    Ticker = (
-      <span style={tickerStyle}>
-        The current stock you are viewing is {searchData.ticker}
-      </span>
-    );
-    // Ticker = `The current stock you are viewing is ${searchData.ticker}`;
-    OpenPrice = `The open price of the stock was ${searchData.open}`;
-    ClosePrice = `The close price of the stock was ${searchData.close}`;
-    HighPrice = `The highest recorded price of the stock was ${searchData.high}`;
-    LowPrice = `The lowest recorded price of the stock was ${searchData.low}`;
-    Percent = `The percent change today is measured at ${PercentChange}`;
-    stockData = {
-      labels: ["Open", "Close", "High", "Low"],
-      datasets: [
-        {
-          label: "Stock Price",
-          data: [
-            searchData.open,
-            searchData.close,
-            searchData.high,
-            searchData.low,
-          ],
-          borderColor: "rgb(75, 192, 192)",
-          tension: 0.1,
-        },
-      ],
-    };
-  } else {
-    console.log("Search Data not found in Home");
-    Ticker = `The current stock you are viewing is none`;
-    OpenPrice = "The open price of the stock was 0";
-    ClosePrice = "The close price of the stock was 0";
-    HighPrice = "The highest recorded price of the stock was 0";
-    LowPrice = "The lowest recorded price of the stock was 0";
-    Percent = "The Percentage change was 0";
-  }
+	if (searchData) {
+		console.log("Search Data in Home:", searchData);
+		PercentChange = calculatePercentageChange();
+		const tickerStyle = {
+			color: PercentChange > 0 ? "green" : PercentChange < 0 ? "red" : "black",
+		};
+		Ticker = (
+			<span style={tickerStyle}><strong>The current stock you are viewing is {searchData.ticker}</strong></span>
+		);
+		// Ticker = `The current stock you are viewing is ${searchData.ticker}`;
+		OpenPrice = (
+			<span>
+				The <strong>open price</strong> of the stock was <strong>${searchData.open.toFixed(2)}</strong>
+			</span>
+		  );
+		ClosePrice = (
+			<span>
+				The <strong>close price</strong> of the stock was <strong>${searchData.close.toFixed(2)}</strong>
+			</span>
+		  );
+		HighPrice = (
+			<span>
+				The <strong>highest recorded price</strong> of the stock was <strong>${searchData.high.toFixed(2)}</strong>
+			</span>
+		  );
+		LowPrice = (
+			<span>
+				The <strong>lowest recorded price</strong> of the stock was <strong>${searchData.low.toFixed(2)}</strong>
+			</span>
+		  );
+		Percent = (
+			<span>
+				The <strong>percent change</strong> is measured at <strong>%{PercentChange.toFixed(2)}</strong>
+			</span>
+		  );
+		stockData = {
+			labels: ["Open", "Close", "High", "Low"],
+			datasets: [
+			  {
+				label: "Stock Price",
+				data: [
+				  searchData.open,
+				  searchData.close,
+				  searchData.high,
+				  searchData.low,
+				],
+				borderColor: "rgb(75, 192, 192)",
+				tension: 0.1,
+			  },
+			],
+		  };
+	} else {
+		console.log("Search Data not found in Home");
+		Ticker = (
+			<span>
+				<strong>The current stock you are viewing is none</strong>
+			</span>
+		  );
+		OpenPrice = (
+			<span>
+				The <strong>open price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		ClosePrice = (
+			<span>
+				The <strong>close price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		HighPrice = (
+			<span>
+				The <strong>highest recorded price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		LowPrice = (
+			<span>
+				The <strong>lowest recorded price</strong> of the stock was <strong>0</strong>
+			</span>
+		  );
+		Percent = (
+			<span>
+				The <strong>percentage change</strong> is measured at <strong>0</strong>
+			</span>
+		  );
+	}
 
   const addToPublicWatchlist = async (ticker) => {
     try {
@@ -120,7 +162,7 @@ function Home() {
           <h4>Home</h4>
         </div>
         {errorMessage && <div className="text-danger">{errorMessage}</div>}
-        <div className="row">
+        <div className="row infocard">
           <div className="chart-container col">
             <Line data={stockData} />
           </div>
