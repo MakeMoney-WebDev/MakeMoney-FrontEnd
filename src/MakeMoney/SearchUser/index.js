@@ -6,7 +6,6 @@ import { findUserByUsername } from "../Account/client";
 import * as client from "./client";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccount, updateAccount } from "./searchReducer";
-import axios from "axios";
 function SearchUser() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedUser, setSearchedUser] = useState(null);
@@ -66,41 +65,41 @@ function SearchUser() {
   return (
     <div className="content">
       <div className="container-fluid">
-      <div className="infocard">
-      <div>
-        <input
-          type="text"
-          placeholder="Search for a User"
-          value={searchTerm}
-          onChange={handleChange}
-        />
-        <button className="btn btn-light ms-2" onClick={handleSearch}>
-          <FaSearch className="search-icon" />
-        </button>
-        {searchedUser && (
+        <div className="infocard">
           <div>
-            <h4>Here are results for {searchedUser.username}</h4>
-            <br />
-            <p>Name: {searchedUser.firstName}</p>
-            <p>Username: {searchedUser.username}</p>
-            <div className="row">
-            {publicWatchlist && (
-              <div className="col-6">
-                <h2>Public Watchlist</h2>
-                <DisplayWatchlist watchlist={publicWatchlist} />
+            <input
+              type="text"
+              placeholder="Search for a User"
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <button className="btn btn-light ms-2" onClick={handleSearch}>
+              <FaSearch className="search-icon" />
+            </button>
+            {searchedUser && (
+              <div>
+                <h4>Here are results for {searchedUser.username}</h4>
+                <br />
+                <p>Name: {searchedUser.firstName}</p>
+                <p>Username: {searchedUser.username}</p>
+                <div className="row">
+                  {publicWatchlist && (
+                    <div className="col-6">
+                      <h2>Public Watchlist</h2>
+                      <DisplayWatchlist watchlist={publicWatchlist} />
+                    </div>
+                  )}
+                  {privateWatchlist && account.role === "admin" && (
+                    <div className="col-6">
+                      <h2>Private Watchlist</h2>
+                      <DisplayWatchlist watchlist={privateWatchlist} />
+                    </div>
+                  )}
+                </div>
               </div>
             )}
-            {privateWatchlist && account.role === "admin" && (
-              <div className="col-6">
-                <h2>Private Watchlist</h2>
-                <DisplayWatchlist watchlist={privateWatchlist} />
-              </div>
-            )}
-            </div>
           </div>
-        )}
-      </div>
-      </div>
+        </div>
       </div>
     </div>
   );

@@ -43,7 +43,10 @@ function Account() {
         <div className="infocard">
           {!account && (
             <div>
-              <Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
+              <Link
+                to="/makemoney/signin"
+                className="btn btn-custom-filled me-2"
+              >
                 Sign In
               </Link>
               <Link to="/makemoney/signup" className="btn btn-custom">
@@ -81,7 +84,9 @@ function Account() {
                 type="text"
                 value={account.firstName}
                 onChange={(e) =>
-                  dispatch(setAccount({ ...account, firstName: e.target.value }))
+                  dispatch(
+                    setAccount({ ...account, firstName: e.target.value })
+                  )
                 }
               />
               <br />
@@ -125,7 +130,9 @@ function Account() {
                 Signout
               </button>
               <br />
-              <label className="mt-3" htmlFor="role">Account Type</label>
+              <label className="mt-3" htmlFor="role">
+                Account Type
+              </label>
               <select
                 id="role"
                 className="form-control"
@@ -138,12 +145,12 @@ function Account() {
                 <option value="admin">Admin</option>
               </select>
               <button className="btn btn-custom mt-2" onClick={save}>
-                Change account type to { account.role }
+                Change account type to {account.role}
               </button>
               <br />
-              </div>
-        )}
-         </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

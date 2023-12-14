@@ -33,7 +33,7 @@ function Signin() {
       <div className="container-fluid">
         <div className="infocard">
           <h4>Welcome Back</h4>
-          <br/>
+          <br />
           <label htmlFor="username">Username</label>
           <input
             id="username"
@@ -55,7 +55,10 @@ function Signin() {
           />
           <br />
           <div className="sign-up-prompt">
-            Don't have an account? <Link to="/makemoney/signup" className="colored-link">Sign up here</Link>
+            Don't have an account?{" "}
+            <Link to="/makemoney/signup" className="colored-link">
+              Sign up here
+            </Link>
           </div>
           <br />
           <button className="btn btn-custom-filled" onClick={signin}>
