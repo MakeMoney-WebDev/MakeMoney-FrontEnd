@@ -4,6 +4,6 @@ console.log("url" + API_BASE);
 export const STOCK_API = `${API_BASE}/stock`;
 
 export const stockSearch = async (ticker) => {
-	const response = await axios.get(`${STOCK_API}/${ticker}`);
-	return response.data;
+  const response = await axios.get(`${STOCK_API}/${ticker}`);
+  return response.data;
 };

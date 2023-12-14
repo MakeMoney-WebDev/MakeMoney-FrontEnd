@@ -123,7 +123,10 @@ function Signup() {
           />
           <br />
           <div className="sign-in-prompt">
-            Already a member? <Link to="/makemoney/signin" className="colored-link">Sign in here</Link>
+            Already a member?{" "}
+            <Link to="/makemoney/signin" className="colored-link">
+              Sign in here
+            </Link>
           </div>
           <br />
           <button className="btn btn-custom-filled" onClick={signup}>
