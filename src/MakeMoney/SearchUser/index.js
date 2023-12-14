@@ -3,10 +3,25 @@ import DisplayWatchlist from "../Watchlist/displayWatchlist";
 import { findWatchlistById } from "../Watchlist/client";
 import { useState, useEffect } from "react";
 import { findUserByUsername } from "../Account/client";
+import * as client from "./client";
+import { useDispatch, useSelector } from "react-redux";
+import { setAccount, updateAccount } from "./searchReducer";
+import axios from "axios";
 function SearchUser() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedUser, setSearchedUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const account = useSelector((state) => state.accountReducer.account);
+  const dispatch = useDispatch();
+  const fetchAccount = async () => {
+    try {
+      const account = await client.account();
+      console.log("Account:", account.role);
+      dispatch(setAccount(account));
+    } catch (error) {
+      console.log("Not logged in");
+    }
+  };
   const handleSearch = async () => {
     try {
       const searchData = await findUserByUsername(searchTerm);
@@ -20,6 +35,7 @@ function SearchUser() {
     fetchWatchlists();
   };
   const [publicWatchlist, setPublicWatchlist] = useState(null);
+  const [privateWatchlist, setPrivateWatchlist] = useState(null);
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -30,8 +46,12 @@ function SearchUser() {
         setPublicWatchlist(
           await findWatchlistById(searchedUser.publicWatchlist)
         );
+        setPrivateWatchlist(
+          await findWatchlistById(searchedUser.privateWatchlist)
+        );
         console.log("found watchlist");
         console.log(searchedUser.publicWatchlist);
+        console.log(searchedUser.privateWatchlist);
       }
       console.log("cannot find search data");
     } catch (error) {
@@ -41,6 +61,7 @@ function SearchUser() {
 
   useEffect(() => {
     fetchWatchlists();
+    fetchAccount();
   }, [searchedUser]);
   return (
     <div>
@@ -59,12 +80,20 @@ function SearchUser() {
           <br />
           <p>Name: {searchedUser.firstName}</p>
           <p>Username: {searchedUser.username}</p>
+          <div className="row">
           {publicWatchlist && (
             <div className="col-6">
               <h2>Public Watchlist</h2>
               <DisplayWatchlist watchlist={publicWatchlist} />
             </div>
           )}
+          {privateWatchlist && account.role === "admin" && (
+            <div className="col-6">
+              <h2>Private Watchlist</h2>
+              <DisplayWatchlist watchlist={privateWatchlist} />
+            </div>
+          )}
+          </div>
         </div>
       )}
     </div>

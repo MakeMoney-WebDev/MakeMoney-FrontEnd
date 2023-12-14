@@ -123,6 +123,23 @@ function Account() {
             <button className="btn btn-danger" onClick={signout}>
               Signout
             </button>
+            <br />
+            <label htmlFor="role">Account Type</label>
+            <select
+              id="role"
+              className="form-control"
+              value={account.role}
+              onChange={(e) =>
+                dispatch(setAccount({ ...account, role: e.target.value }))
+              }
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button className="btn btn-secondary" onClick={save}>
+              Change account type to { account.role }
+            </button>
+            <br />
           </div>
         )}
       </div>
