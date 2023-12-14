@@ -80,6 +80,7 @@ function SearchUser() {
           <br />
           <p>Name: {searchedUser.firstName}</p>
           <p>Username: {searchedUser.username}</p>
+          <div className="row">
           {publicWatchlist && (
             <div className="col-6">
               <h2>Public Watchlist</h2>
@@ -92,6 +93,7 @@ function SearchUser() {
               <DisplayWatchlist watchlist={privateWatchlist} />
             </div>
           )}
+          </div>
         </div>
       )}
     </div>
