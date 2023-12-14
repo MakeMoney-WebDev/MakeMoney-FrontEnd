@@ -27,7 +27,7 @@ function Home() {
       {
         label: "Stock Price",
         data: [0, 0, 0, 0],
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: "gray",
         tension: 0.1,
       },
     ],
@@ -54,6 +54,7 @@ function Home() {
 		const tickerStyle = {
 			color: PercentChange > 0 ? "green" : PercentChange < 0 ? "red" : "black",
 		};
+		console.log(tickerStyle.color);
 		Ticker = (
 			<span style={tickerStyle}><strong>The current stock you are viewing is {searchData.ticker}</strong></span>
 		);
@@ -94,7 +95,7 @@ function Home() {
 				  searchData.high,
 				  searchData.low,
 				],
-				borderColor: "rgb(75, 192, 192)",
+				borderColor: `${tickerStyle.color}`,
 				tension: 0.1,
 			  },
 			],
@@ -179,13 +180,13 @@ function Home() {
         {account && searchData && (
           <div className="d-flex flex-column">
             <button
-              className="btn btn-success my-2"
+              className="btn btn-custom my-2"
               onClick={() => addToPublicWatchlist(searchData.ticker)}
             >
               Add to Public Watchlist
             </button>
             <button
-              className="btn btn-success"
+              className="btn btn-custom-filled"
               onClick={() => addToPrivateWatchlist(searchData.ticker)}
             >
               Add to Private Watchlist

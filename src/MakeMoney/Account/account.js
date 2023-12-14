@@ -40,108 +40,110 @@ function Account() {
     <div className="content">
       <div className="container-fluid">
         <h4>My Account</h4>
-        {!account && (
-          <div>
-            <Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
-              Sign In
-            </Link>
-            <Link to="/makemoney/signup" className="btn btn-custom-outline">
-              Sign Up
-            </Link>
-          </div>
+        <div className="infocard">
+          {!account && (
+            <div>
+              <Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
+                Sign In
+              </Link>
+              <Link to="/makemoney/signup" className="btn btn-custom">
+                Sign Up
+              </Link>
+            </div>
+          )}
+          {account && (
+            <div>
+              <br />
+              <label htmlFor="username">Current Username</label>
+              <input
+                id="username"
+                className="form-control"
+                value={account.username}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, username: e.target.value }))
+                }
+              />
+              <br />
+              <label htmlFor="password">Current Password</label>
+              <input
+                id="password"
+                className="form-control"
+                value={account.password}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, password: e.target.value }))
+                }
+              />
+              <br />
+              <label htmlFor="fname">Your First Name</label>
+              <input
+                id="fname"
+                className="form-control"
+                type="text"
+                value={account.firstName}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, firstName: e.target.value }))
+                }
+              />
+              <br />
+              <label htmlFor="lname">Your Last Name</label>
+              <input
+                id="lname"
+                className="form-control"
+                type="text"
+                value={account.lastName}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, lastName: e.target.value }))
+                }
+              />
+              <br />
+              <label htmlFor="email">Your Email</label>
+              <input
+                id="email"
+                type="email"
+                className="form-control"
+                value={account.email}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, email: e.target.value }))
+                }
+              />
+              <br />
+              <label htmlFor="phone">Your Phone Number</label>
+              <input
+                id="phone"
+                className="form-control"
+                value={account.phone}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, phone: e.target.value }))
+                }
+              />
+              <br />
+              <button className="btn btn-custom-filled" onClick={save}>
+                Update your Information
+              </button>
+              <br />
+              <button className="btn btn-danger mt-1" onClick={signout}>
+                Signout
+              </button>
+              <br />
+              <label className="mt-3" htmlFor="role">Account Type</label>
+              <select
+                id="role"
+                className="form-control"
+                value={account.role}
+                onChange={(e) =>
+                  dispatch(setAccount({ ...account, role: e.target.value }))
+                }
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+              <button className="btn btn-custom mt-2" onClick={save}>
+                Change account type to { account.role }
+              </button>
+              <br />
+              </div>
         )}
-        {account && (
-          <div>
-            <br />
-            <label htmlFor="username">Current Username</label>
-            <input
-              id="username"
-              className="form-control"
-              value={account.username}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, username: e.target.value }))
-              }
-            />
-            <br />
-            <label htmlFor="password">Current Password</label>
-            <input
-              id="password"
-              className="form-control"
-              value={account.password}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, password: e.target.value }))
-              }
-            />
-            <br />
-            <label htmlFor="fname">Your First Name</label>
-            <input
-              id="fname"
-              className="form-control"
-              type="text"
-              value={account.firstName}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, firstName: e.target.value }))
-              }
-            />
-            <br />
-            <label htmlFor="lname">Your Last Name</label>
-            <input
-              id="lname"
-              className="form-control"
-              type="text"
-              value={account.lastName}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, lastName: e.target.value }))
-              }
-            />
-            <br />
-            <label htmlFor="email">Your Email</label>
-            <input
-              id="email"
-              type="email"
-              className="form-control"
-              value={account.email}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, email: e.target.value }))
-              }
-            />
-            <br />
-            <label htmlFor="phone">Your Phone Number</label>
-            <input
-              id="phone"
-              className="form-control"
-              value={account.phone}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, phone: e.target.value }))
-              }
-            />
-            <br />
-            <button className="btn btn-primary" onClick={save}>
-              Update your Information
-            </button>
-            <br />
-            <button className="btn btn-danger" onClick={signout}>
-              Signout
-            </button>
-            <br />
-            <label htmlFor="role">Account Type</label>
-            <select
-              id="role"
-              className="form-control"
-              value={account.role}
-              onChange={(e) =>
-                dispatch(setAccount({ ...account, role: e.target.value }))
-              }
-            >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-            <button className="btn btn-secondary" onClick={save}>
-              Change account type to { account.role }
-            </button>
-            <br />
-          </div>
-        )}
+         </div>
       </div>
     </div>
   );

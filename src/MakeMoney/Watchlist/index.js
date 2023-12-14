@@ -45,35 +45,37 @@ function Watchlist() {
     <div className="content">
       <div className="container-fluid">
         <h4>My WatchList</h4>
-        <div className="row">
-          {!account && (
-            <div>
-              Please go to account page and sign in or sign up to view your
-              watchlist!
-            </div>
+        <div className="infocard">
+          <div className="row">
+            {!account && (
+              <div>
+                Please go to account page and sign in or sign up to view your
+                watchlist!
+              </div>
+            )}
+            {errorMessage && <div className="text-danger">{errorMessage}</div>}
+            {publicWatchlist && (
+              <div className="col-6">
+                <h2>Public Watchlist</h2>
+                <DisplayWatchlist
+                  watchlist={publicWatchlist}
+                  canEdit
+                  onDelete={deleteFromWatchlist}
+                />
+              </div>
+            )}
+            {privateWatchlist && (
+              <div className="col-6">
+                <h2>Private Watchlist</h2>
+                <DisplayWatchlist
+                  watchlist={privateWatchlist}
+                  canEdit
+                  onDelete={deleteFromWatchlist}
+                />
+              </div>
           )}
-          {errorMessage && <div className="text-danger">{errorMessage}</div>}
-          {publicWatchlist && (
-            <div className="col-6">
-              <h2>Public Watchlist</h2>
-              <DisplayWatchlist
-                watchlist={publicWatchlist}
-                canEdit
-                onDelete={deleteFromWatchlist}
-              />
-            </div>
-          )}
-          {privateWatchlist && (
-            <div className="col-6">
-              <h2>Private Watchlist</h2>
-              <DisplayWatchlist
-                watchlist={privateWatchlist}
-                canEdit
-                onDelete={deleteFromWatchlist}
-              />
-            </div>
-          )}
-        </div>
+          </div>
+          </div>
       </div>
     </div>
   );

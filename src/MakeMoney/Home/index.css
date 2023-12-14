@@ -12,6 +12,7 @@
     background-color: #F5F7F9;
     padding: 10px;
     display: flex;
+    height: 100vh;
 }
 
 .infocard {
@@ -21,9 +22,9 @@
 	padding: 20px;
 	margin-top: 20px;
     margin-bottom: 20px;
-	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 8px rgb(0,0,0,0.1);
 }
 .chart-container {
-    width: 700px;
-    height: 300px;
+    width: 60vw;
+    height: 40vw;
   }

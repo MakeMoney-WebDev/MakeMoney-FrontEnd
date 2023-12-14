@@ -55,7 +55,7 @@ function Topbar() {
 					<Link to="/makemoney/signin" className="btn btn-custom-filled me-2">
 						Sign In
 					</Link>
-					<Link to="/makemoney/signup" className="btn btn-custom-outline">
+					<Link to="/makemoney/signup" className="btn btn-custom">
 						Sign Up
 					</Link>
 					</>
