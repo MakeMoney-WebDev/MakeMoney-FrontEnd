@@ -137,7 +137,7 @@ function Account() {
               <option value="admin">Admin</option>
             </select>
             <button className="btn btn-secondary" onClick={save}>
-              Change account type to { account.role === "User" ? "Admin" : "User" }
+              Change account type to { account.role }
             </button>
             <br />
           </div>
